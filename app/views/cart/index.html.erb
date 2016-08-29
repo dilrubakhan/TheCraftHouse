@@ -1,0 +1,43 @@
+<h1>Your Shopping Cart</h1>
+</br>
+
+<% if @cart.empty? %>
+	<p>You have nothing in your Shopping Cart go <a href="/"shopping</></p>
+<% else %>
+
+<% total = 0 %>
+<ul>
+	<% @cart.each do | id, quantity | %>
+	<% product = Product.find_by_id(id) %>
+
+	<li>
+		<p><%= link_to product.name, product %></p>
+		<p>Price: </p>
+		<p><%= number_to_currency(product.price, :unit =>'€') %></p>
+		<p>Quantity: <%= quantity %> 
+<% if quantity > product.quantity %>
+Sorry we have	<%= product.quantity %> in our store
+<%
+quantity = product.quantity
+end %>
+
+		</p>
+
+	</li>
+	<% total += quantity * product.price %>
+	<% end %>
+<b>Total Price: </b>
+	<p><b> <%= number_to_currency(total, :unit => '€')%></b></p>
+</ul>
+<ul>
+	<li>
+<%= link_to 'Start your order', new_order_path %>
+</li>
+<li>
+<%= link_to 'Add More Product', products_path %>
+</li>
+<li>
+<%= link_to 'Empty Your Cart', cart_clear_path %>
+</li>
+</ul>
+<% end %>

@@ -1,0 +1,28 @@
+<div class="jumbotron">
+  <h2><div class="center"><b>Best Range Handicraft</b><br>
+      to Choose from.</div></h2>
+</div>
+
+<div class="center">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-3">
+        <div class="thumbnail">
+          <%= link_to image_tag(product.image.url(:medium)), product %>
+          <div class="caption">
+            <h3><%= product.name %></h3>
+            <p><%=number_to_currency(product.price, unit: '€')%></p>
+            <p><%= "Sold by #{product.user.name}" %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+</div>
+<dir class="center"><%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+<br>
+<% if user_signed_in? %>
+  <%= link_to "New Product", new_product_path, class: "btn btn-primary", data: { no_turbolink: true } %>
+<% end %></dir>
+

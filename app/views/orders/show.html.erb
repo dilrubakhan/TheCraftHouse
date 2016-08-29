@@ -1,0 +1,37 @@
+<h1>Your Order</h1>
+</br>
+
+<% total = 0 %>
+<ul>
+	<%
+  @order.orderlines.each do | orderline | %>
+	<% product = Product.find_by_id(orderline.product_id) %>
+
+	<li>
+		<p><%= link_to product.name, product %></p>
+		<p>Price: </p>
+		<p><%= number_to_currency(orderline.price, :unit =>'€') %></p>
+		<p>Quantity: <%= orderline.quantity %>
+		</p>
+	</li>
+	<% end %>
+<b>Total Price:  <%= number_to_currency(@order.totalprice, :unit => '€')%></b>
+</ul>
+
+
+<div class="col-md-8">
+
+  <div class="form-group">
+    <b>Address:</b>
+    <%= @order.address %>
+  </div>
+  <div class="form-group">
+    <b>City:</b>
+    <%= @order.city%>
+  </div>
+  <div class="form-group">
+    <b>State:</b>
+    <%= @order.state %>
+  </div>
+ </div>
+</div>

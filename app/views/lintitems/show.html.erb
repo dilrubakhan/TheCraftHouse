@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @lintitem.product_id %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @lintitem.order_id %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @lintitem.quantity %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @lintitem.cart_id %>
+</p>
+
+<%= link_to 'Edit', edit_lintitem_path(@lintitem) %> |
+<%= link_to 'Back', lintitems_path %>
