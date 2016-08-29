@@ -1,8 +1,12 @@
-<h1>Your Shopping Cart</h1>
-</br>
+
+<div class="jumbotron">
+  <h2><div class="center"><b>Your Shopping Cart</b></div></h2>
+</div>
 
 <% if @cart.empty? %>
-	<p>You have nothing in your Shopping Cart go <a href="/"shopping</></p>
+	<div class="show_error">
+		<b>You have nothing in your Shopping Cart <a href="/"shopping</></b>
+	</div>
 <% else %>
 
 <% total = 0 %>

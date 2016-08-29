@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+	searchkick
 	attr_accessor :filename
 	
 	if Rails.env.development?

@@ -17,15 +17,11 @@ Insert the form tu insert the recipient
   </tr>
   <% @products.each do |product| %>
    <tr>
-      <td>
-
-      <%#= image_tag product.image_url(:thumb) %>
-
-      </td>
-      <td><%= product.name %></td>
-      <td><%= product.description %></td>
-      <td><%= product.quantity %></td>
-      <td><%= number_to_currency(product.price, unit: '€') %></td>
+      <td class="center"><%= image_tag product.image.url(:thumb) %></td>
+      <td class="center"><%= product.name %></td>
+      <td class="center"><%= product.description %></td>
+      <td class="center"><%= product.quantity %></td>
+      <td class="center"><%= number_to_currency(product.price, unit: '€') %></td>
       <td>
         <div class="btn-group">
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
