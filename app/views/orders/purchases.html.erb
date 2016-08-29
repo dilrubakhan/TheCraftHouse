@@ -1,10 +1,10 @@
-<div class="center">
-  <h2>Your Purchase History</h2>
+<div class="jumbotron">
+  <h2><div class="center"><b>Your Purchase History</b></div></h2>
 </div>
 
 <table class="table table-striped table-bordered">
   <tr>
-    <th class="center">Id</th>
+    <th class="center">Order Id</th>
     <th class="center">Address</th>
     <th class="center">Date Purchased</th>
     <th class="center">Price</th>
@@ -18,13 +18,14 @@
       <td class="center"><%= order.created_at.strftime("%B %-d, %Y") %></td>
       <td class="center"><%=number_to_currency(order.totalprice, unit: '€')%></td>
       <td class="center">
+
 <% case order.status  %>
-<% when 'I' %>
-There was a problem this order was not sent to the seller
-<% when 'S' %>
-Order complete you will receive your products soon.
-<% else %>
-Status unknown <%= order.status %>
+  <% when 'I' %>
+    There was a problem this order was not sent to the seller
+  <% when 'S' %>
+    Order complete you will receive your products soon.
+  <% else %>
+    Status unknown <%= order.status %>
 <% end %>
     </td>
     </tr>

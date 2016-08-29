@@ -1,9 +1,13 @@
+<div class="jumbotron">
+  <h2><div class="center"><b>Seller Profile</b></div></h2>
+</div>
+
 <% if current_user.routing then %>
 insert the form to update routing infos
 Routing infos: <%= current_user.routing %>
 
 <% else %>
-Insert the form tu insert the recipient
+Insert the form to insert the recipient
 <% end %>
 
 <table class="table table-striped table-bordered">
@@ -41,5 +45,5 @@ Insert the form tu insert the recipient
 <!-- when we have routing infos if user_signed_in? && current_user.routing --> 
 
 <% if user_signed_in? %>
-<%= link_to 'New Product', new_product_path, class:"btn btn-link" %>
+<%= link_to 'Back to Homepage', products_path, class:"btn btn-primary" %>
 <% end %>

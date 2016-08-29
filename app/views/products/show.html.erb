@@ -24,7 +24,6 @@
     </div>
 </div>
    <div class="center">
-    
        <% if @product.quantity == 0 %>
          <div class="show_error">  
             <i><b>This product is not available now, will come back soon</b></i> 
@@ -35,7 +34,6 @@
               | <%= submit_tag "Add To Cart" %>
         <% end %>
         <% end %>
-     
     </div>
    </div>
 </div>
@@ -47,36 +45,59 @@
           <% end -%>
       <% end %>
 
-      <%= link_to 'Back to Homepage', products_path, class:"btn btn-primary"%>
+        <%= link_to 'Back to Homepage', products_path, class:"btn btn-primary"%>
 
 
-      <%=link_to "Write a Review", new_product_review_path(@product), class: "btn btn-success"%>
+        <%=link_to "Write a Review", new_product_review_path(@product), class: "btn btn-success"%>
       <br><br>
 
+<%#=
+  Function for review
+%>
     <div class="well">
       <% if @reviews.blank? %>
-        <h3>No reviews yet. Be the first to write one!</h3>
+        <div class="no_rev_disg">
+          <div class="center"><h3>No reviews yet. Be the first to write one!</h3>
+          </div>          
+        </div>
       <% else %>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="col-md-3"></th>
+              <th class="col-md-9"></th>
+            </tr>
+          </thead>
 
-          <table class="table">
             <tbody>
                <% @reviews.each do |review| %>
-               <tr>
-                 <td>
-                   <div class="star-rating" data-score= <%=review.rating %>></div>
-                   <p>  <%=h(review.comment).gsub(/\n/, '<br/>').html_safe%> </p>
-                 </td>
-               </tr>
-             <% end %>
-            </tbody>
+                 <tr>
+                   <td>
+                    <h4>
+                      <%= "#{review.user.name.capitalize}." %>
+                    </h4>
+                      <p><%= review.created_at.strftime("%-m/%-d/%y") %></p>
+                  </td>
+
+                    <td>
+                       <div class="star-rating" data-score= <%=review.rating %>></div>
+                       <p> <%=h(review.comment).gsub(/\n/, '<br/>').html_safe%> </p>
+
+                       <% if user_signed_in? %>
+                       <% if (review.user == current_user) || (current_user.admin?) %>
+                          <%= link_to "Edit", edit_product_review_path(@product, review) %>
+                          <%= link_to "Delete", product_review_path(@product, review), method: :delete %>
+                        <% end %>
+                      <% end %>
+                   </td>
+                 </tr>
+                <% end %>
+              </tbody>
           </table>
       <% end %>
     </div>
+  </div>
 </div>
-
-
-
-
 <script>
   $('.star-rating').raty({
     path:  'https://s3.amazonaws.com/yelpdemo/stars',
