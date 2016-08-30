@@ -4,10 +4,9 @@
   <title>Thecrafthouse</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
-  
   <%= javascript_include_tag "https://js.stripe.com/v2/" %>
   <%= csrf_meta_tags %>
-  <%= tag :meta, :name => "stripe-key", :content => "pk_test_j8jeg9J2vIVT2mllqhwIM6Ch" %>
+  <%= tag :meta, :name => "stripe-key", :content => ENV["STRIPE_PUBLIC_KEY"] %>
 </head>
 <body>
 <%= render 'layouts/header' %>

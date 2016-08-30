@@ -1,40 +1,49 @@
-<h1>Your Order</h1>
-</br>
+<div class="jumbotron">
+  <h2><div class="center"><b>Your Order</b><br>
+    </div></h2>
+</div>
+
 
 <% if @cart.empty? %>
 	<p>You have nothing in your Shopping Cart go <a href="/"shopping</></p>
 <% else %>
 
-<% total = 0 %>
-<ul>
-	<%
-  @cart.each do | id, quantity | %>
+  <% total = 0 %>
+
+	<% @cart.each do | id, quantity | %>
 	<% product = Product.find_by_id(id) %>
 
-	<li>
 		<p><%= link_to product.name, product %></p>
 		<p>Price: </p>
 		<p><%= number_to_currency(product.price, :unit =>'€') %></p>
 		<p>Quantity: <%= quantity %>
-<% if quantity > product.quantity %>
-Sorry we have	<%= product.quantity %> in our store
-<%
-quantity = product.quantity
-@cart[id] = quantity
-end %>
+
+  <% if quantity > product.quantity %>
+    Sorry we have	<%= product.quantity %> in our store
+  <%
+    quantity = product.quantity
+    @cart[id] = quantity
+  end %>
 
 		</p>
 
-	</li>
+
 	<% total += quantity * product.price %>
 	<% end %>
 <b>Total Price: </b>
 	<p><b> <%= number_to_currency(total, :unit => '€')%></b></p>
-</ul>
+
 <% end %>
 
 
-<div class="col-md-8">
+  <%= link_to 'Add More Product', products_path, class:"btn btn-success" %>
+
+  <%= link_to 'Empty Your Cart', cart_clear_path, class:"btn btn-danger" %>
+
+  <%= link_to 'Back to Cart', cart_path, class:"btn btn-primary" %>
+
+<br></br>
+<div class="well">
 
 <%= form_for([@order]) do |f| %>
   <% if @order.errors.any? %>

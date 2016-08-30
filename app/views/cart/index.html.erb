@@ -33,15 +33,11 @@ end %>
 <b>Total Price: </b>
 	<p><b> <%= number_to_currency(total, :unit => '€')%></b></p>
 </ul>
-<ul>
-	<li>
-<%= link_to 'Start your order', new_order_path %>
-</li>
-<li>
-<%= link_to 'Add More Product', products_path %>
-</li>
-<li>
-<%= link_to 'Empty Your Cart', cart_clear_path %>
-</li>
-</ul>
+
+	<%= link_to 'Start your order', new_order_path, class:"btn btn-success" %>
+
+	<%= link_to 'Add More Product', products_path, class:"btn btn-primary" %>
+
+	<%= link_to 'Empty Your Cart', cart_clear_path, class:"btn btn-danger" %>
+
 <% end %>
