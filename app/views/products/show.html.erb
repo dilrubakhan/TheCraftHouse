@@ -23,16 +23,19 @@
       </div>
     </div>
 </div>
+
+
    <div class="center">
        <% if @product.quantity == 0 %>
          <div class="show_error">  
             <i><b>This product is not available now, will come back soon</b></i> 
          </div>
        <% else %>
-         <%= form_tag( cart_path+"/#{@product.id}", method: "get" ) do %>
-         Quantity: <%= select_tag "quantity", options_for_select(Array(1..@product.quantity), "1")%>
-              | <%= submit_tag "Add To Cart" %>
-        <% end %>
+           <%= form_tag( cart_path+"/#{@product.id}", method: "get" ) do %>
+              Quantity: <%= select_tag "quantity", options_for_select(Array(1..@product.quantity), "1")%>
+                | <%= submit_tag "Add To Cart" %>
+
+            <% end %>
         <% end %>
     </div>
    </div>

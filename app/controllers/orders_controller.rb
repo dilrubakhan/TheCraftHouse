@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
           orderline.seller = seller
           orderline.save
         end
-        Stripe.api_key = "sk_test_DYchy91TfiudH1Q35HO6qRWS"
+        Stripe.api_key = ENV["STRIPE_API_KEY"]
         token = params[:stripeToken]
         begin
           charge = Stripe::Charge.create(
@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
             :currency => "eur",
             :card => token
           )
+          flash[:notice] = "Thanks for Ordering"
           rescue Stripe::CardError => e
           flash[:danger] = e.message
         end

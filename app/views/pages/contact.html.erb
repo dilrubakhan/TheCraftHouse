@@ -1,63 +1,65 @@
 <div class="jumbotron">
   <h2><div class="center"><b>Contact us</b></div></h2>
 </div>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6"><div class="well well-sm">
 		 <div class="text-center header">Contact Form</div>
 
-		<% if !@submited || @form_error %>
-			<%= form_for pages_contact_path, :method => "post" do %>
+				<% if !@submited || @form_error %>
+					<%= form_for pages_contact_path, :method => "post" do %>
 
-				<div class="form-group">
-					<%= label_tag :name, "Full Name:"%> <%= @error_msg_name %>
-					<%= text_field_tag :name, @name,:autofocus=>"autofocus", :placeholder=>"Enter Your Full Name", class: "form-control"  %><br>
-				</div>
-				<div class="form-group">
-					<%= label_tag :email, "Email Address:"%> <%= @error_msg_email %>
-					<%= email_field_tag :email, @email, :placeholder=>"something@domain.com", class: "form-control" %><br>
-				</div>
-				<div class="form-group">
-					<%= label_tag :phone, "Telephone No:"%> <%= @error_msg_phone %>
-					<%= text_field_tag :phone, @phone, class: "form-control" %><br>
-				</div>
-				<div class="form-group">
-					<%= label_tag :question, "Enter your Question:"%><%= @error_msg_question %><br>
-					<%= text_area_tag :question, @question, :size => "20x5", class: "form-control" %>
-				</div>
-				<div class="center"><%= submit_tag "Submit Query", class:"btn btn-success"%></div>
-            </div>
-        </div>
+						<div class="form-group">
+							<%= label_tag :name, "Full Name:"%> <%= @error_msg_name %>
+							<%= text_field_tag :name, @name,:autofocus=>"autofocus", :placeholder=>"Enter Your Full Name", class: "form-control"  %>
+						</div>
+						<div class="form-group">
+							<%= label_tag :email, "Email Address:"%> <%= @error_msg_email %>
+							<%= email_field_tag :email, @email, :placeholder=>"something@domain.com", class: "form-control" %>
+						</div>
+						<div class="form-group">
+							<%= label_tag :phone, "Telephone No:"%> <%= @error_msg_phone %>
+							<%= text_field_tag :phone, @phone, class: "form-control" %><br>
+						</div>
+						<div class="form-group">
+							<%= label_tag :question, "Enter your Question:"%><%= @error_msg_question %><br>
+							<%= text_area_tag :question, @question, :size => "20x5", class: "form-control" %>
+						</div>
+						<div class="center"><%= submit_tag "Submit Query", class:"btn btn-success"%></div>
+		            </div>
+		       	 </div>
 
 
-  <div class="col-md-6">
-   		 <div class="panel panel-default">
-                    <div class="text-center header">Our Office</div>
-                    <div class="center">
-                    <h4><b>Dublin Institute of Technology</b></h4>
-                        <p>Aungier St<br> Dublin-2</p>
-							
-                        <hr />
-                          <iframe
-							  width="350"
-							  height="350"
-							  frameborder="0" style="border:0"
-							  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAqlFQWUHukPFirvNoND7cZIfPnx3E0d9Q
-							    &q=Aungier+St, Dublin" allowfullscreen>
-							</iframe>
-
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<% end %>
-	
+		  <div class="col-md-6">
+		   		 <div class="panel panel-default">
+		                    <div class="text-center header">Our Office</div>
+		                    <div class="center">
+		                    <h4><b>Dublin Institute of Technology</b></h4>
+		                        <p>Aungier St<br> Dublin-2</p>
+		                        	<hr />
+		                          	<iframe
+									  width="350"
+									  height="350"
+									  frameborder="0" style="border:0"
+									  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAqlFQWUHukPFirvNoND7cZIfPnx3E0d9Q
+									    &q=Aungier+St, Dublin" allowfullscreen>
+										</iframe>
+		                        	</div>
+		               	 		</div>
+		           	 		</div>
+		        		</div>
+		    		</div>
+				</div>
+			<% end %>
+	</div>
 	<% else %>
-		Your name is: <%= @name %><br>
-		your email is: <%= @email%><br>
-        Thanks for your information.
+		<div class="panel panel-success">
+			Your Name is: <%= @name %><br>
+			your Email is: <%= @email%><br>
+	        An Email has been sent to you. Thank you for your querey.
+	    </div>
+			
     <% end %>
 
 
